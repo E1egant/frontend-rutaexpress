@@ -1,11 +1,11 @@
 import { useMsal } from '@azure/msal-react'
 import { NavLink, Outlet } from 'react-router-dom'
-import { hasAnyRole, useRoles, type Role } from '../auth/roles'
+import { CATALOG_ROLES, SHIPMENT_ROLES, hasAnyRole, useRoles, type Role } from '../auth/roles'
 
 const links: { to: string; label: string; roles?: Role[] }[] = [
   { to: '/dashboard', label: 'Dashboard' },
-  { to: '/shipments', label: 'Envíos', roles: ['Admin', 'Despachador', 'Cliente'] },
-  { to: '/catalog', label: 'Catálogo', roles: ['Admin', 'Despachador'] },
+  { to: '/shipments', label: 'Envíos', roles: SHIPMENT_ROLES },
+  { to: '/catalog', label: 'Catálogo', roles: CATALOG_ROLES },
   { to: '/reports', label: 'Reportería', roles: ['Admin'] },
   { to: '/audit', label: 'Auditoría', roles: ['Admin', 'Auditor'] },
 ]

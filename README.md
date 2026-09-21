@@ -5,7 +5,7 @@ Frontend de RutaExpress en React + Vite + TypeScript, con login de Azure AD medi
 ## Qué incluye
 
 - Login y logout con Microsoft (OIDC, MSAL).
-- Rutas protegidas por rol (`Admin`, `Despachador`, `Cliente`, `Auditor`), leído del claim `roles` del ID token.
+- Rutas protegidas por rol (`Admin`, `Operador`, `Bodega`, `Despachador`, `Cliente`, `Auditor`), leído del claim `roles` del ID token.
 - Cliente HTTP (`src/api/client.ts`) que obtiene el access token con `acquireTokenSilent` y lo envía como `Bearer` al BFF; si requiere interacción, redirige al login.
 - Vistas: `/login`, `/dashboard`, `/shipments`, `/catalog`, `/reports`, `/audit`.
 

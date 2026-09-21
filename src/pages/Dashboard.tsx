@@ -1,10 +1,10 @@
 import { useApi } from '../api/useApi'
-import { useRoles } from '../auth/roles'
+import { SHIPMENT_ROLES, useRoles } from '../auth/roles'
 import type { Shipment } from './Shipments'
 
 export default function Dashboard() {
   const roles = useRoles()
-  const canSeeShipments = roles.some((r) => ['Admin', 'Despachador', 'Cliente'].includes(r))
+  const canSeeShipments = roles.some((r) => SHIPMENT_ROLES.includes(r))
 
   return (
     <>
@@ -16,7 +16,7 @@ export default function Dashboard() {
 
 function RecentShipments() {
   const { data, error, loading } = useApi<Shipment[]>('/api/shipments')
-  const active = (data ?? []).filter((s) => !['ENTREGADO', 'CANCELADO'].includes(s.status))
+  const active = (data ?? []).filter((s) => !['DELIVERED', 'CANCELLED', 'FAILED'].includes(s.status))
 
   return (
     <div className="card">

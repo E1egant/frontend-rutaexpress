@@ -1,7 +1,12 @@
 import type { AccountInfo } from '@azure/msal-browser'
 import { useMsal } from '@azure/msal-react'
 
-export type Role = 'Admin' | 'Despachador' | 'Cliente' | 'Auditor'
+export type Role = 'Admin' | 'Operador' | 'Bodega' | 'Despachador' | 'Cliente' | 'Auditor'
+
+export const SHIPMENT_ROLES: Role[] = ['Admin', 'Operador', 'Bodega', 'Despachador', 'Cliente']
+export const CATALOG_ROLES: Role[] = ['Admin', 'Operador', 'Bodega', 'Despachador']
+export const STATUS_ROLES: Role[] = ['Admin', 'Operador', 'Bodega', 'Despachador']
+export const CREATE_ROLES: Role[] = ['Admin', 'Operador', 'Despachador', 'Cliente']
 
 export function rolesOf(account: AccountInfo | null): Role[] {
   const roles = account?.idTokenClaims?.roles
