@@ -25,6 +25,7 @@ Copiar `.env.example` a `.env` y completar:
 ```bash
 npm install
 npm run dev     # http://localhost:5173
+npm test        # 10 pruebas (roles, ProtectedRoute, cliente HTTP con Bearer)
 npm run build
 ```
 
