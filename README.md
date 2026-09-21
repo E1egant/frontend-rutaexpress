@@ -1,32 +1,31 @@
-# React + TypeScript + Vite
+# frontend-rutaexpress
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Frontend de RutaExpress en React + Vite + TypeScript, con login de Azure AD mediante `@azure/msal-react`.
 
-Currently, two official plugins are available:
+## Qué incluye
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Login y logout con Microsoft (OIDC, MSAL).
+- Rutas protegidas por rol (`Admin`, `Despachador`, `Cliente`, `Auditor`), leído del claim `roles` del ID token.
+- Cliente HTTP (`src/api/client.ts`) que obtiene el access token con `acquireTokenSilent` y lo envía como `Bearer` al BFF; si requiere interacción, redirige al login.
+- Vistas: `/login`, `/dashboard`, `/shipments`, `/catalog`, `/reports`, `/audit`.
 
-## React Compiler
+## Configuración
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Copiar `.env.example` a `.env` y completar:
 
-## Expanding the Oxlint configuration
+| Variable | Descripción |
+|---|---|
+| `VITE_TENANT_ID` | Tenant de Azure AD |
+| `VITE_SPA_CLIENT_ID` | clientId de la App Registration del SPA |
+| `VITE_API_SCOPE` | Scope de la API (`api://<API_CLIENT_ID>/access_as_user`) |
+| `VITE_API_BASE_URL` | URL del API Gateway / BFF |
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+## Ejecutar
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+```bash
+npm install
+npm run dev     # http://localhost:5173
+npm run build
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+Coordinación entre repos, contratos y reglas de trabajo: repositorio `Cloud-Native-1`.
