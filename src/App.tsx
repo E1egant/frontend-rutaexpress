@@ -2,9 +2,11 @@ import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import ProtectedRoute from './auth/ProtectedRoute'
 import { CATALOG_ROLES, SHIPMENT_ROLES } from './auth/roles'
 import Layout from './components/Layout'
+import Audit from './pages/Audit'
+import Catalog from './pages/Catalog'
 import Dashboard from './pages/Dashboard'
-import JsonView from './pages/JsonView'
 import Login from './pages/Login'
+import Reports from './pages/Reports'
 import Shipments from './pages/Shipments'
 
 export default function App() {
@@ -19,13 +21,13 @@ export default function App() {
               <Route path="/shipments" element={<Shipments />} />
             </Route>
             <Route element={<ProtectedRoute allowed={CATALOG_ROLES} />}>
-              <Route path="/catalog" element={<JsonView title="Catálogo de servicios" path="/api/catalog/services" />} />
+              <Route path="/catalog" element={<Catalog />} />
             </Route>
             <Route element={<ProtectedRoute allowed={['Admin']} />}>
-              <Route path="/reports" element={<JsonView title="Reportería" path="/api/reports/kpis" />} />
+              <Route path="/reports" element={<Reports />} />
             </Route>
             <Route element={<ProtectedRoute allowed={['Admin', 'Auditor']} />}>
-              <Route path="/audit" element={<JsonView title="Auditoría" path="/api/audit" />} />
+              <Route path="/audit" element={<Audit />} />
             </Route>
           </Route>
         </Route>
