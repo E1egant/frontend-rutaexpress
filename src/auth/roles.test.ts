@@ -1,6 +1,19 @@
 import type { AccountInfo } from '@azure/msal-browser'
 import { describe, expect, it } from 'vitest'
-import { hasAnyRole, rolesOf } from './roles'
+import { hasAnyRole, rolesFromAccessToken, rolesOf } from './roles'
+
+const jwt = (claims: object) => `h.${btoa(JSON.stringify(claims)).replace(/\+/g, '-').replace(/\//g, '_')}.s`
+
+describe('rolesFromAccessToken', () => {
+  it('lee el claim roles del payload del access token', () => {
+    expect(rolesFromAccessToken(jwt({ roles: ['Admin', 'Bodega'] }))).toEqual(['Admin', 'Bodega'])
+  })
+
+  it('devuelve lista vacía si no hay roles o el token no es un JWT', () => {
+    expect(rolesFromAccessToken(jwt({ aud: 'x' }))).toEqual([])
+    expect(rolesFromAccessToken('no-es-un-jwt')).toEqual([])
+  })
+})
 
 const account = (roles?: unknown) =>
   ({ idTokenClaims: roles === undefined ? {} : { roles } }) as unknown as AccountInfo
