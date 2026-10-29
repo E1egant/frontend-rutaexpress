@@ -8,7 +8,8 @@ export default function Login() {
 
   return (
     <div className="center">
-      <div className="card" style={{ textAlign: 'center' }}>
+      <div className="card login-card">
+        <div className="brand-mark">🚚</div>
         <h1>RutaExpress</h1>
         <p>Plataforma de envíos de última milla</p>
         <button onClick={() => instance.loginRedirect(loginRequest)}>Iniciar sesión con Microsoft</button>

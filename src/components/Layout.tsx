@@ -18,7 +18,10 @@ export default function Layout() {
   return (
     <div className="layout">
       <nav className="sidebar">
-        <strong style={{ marginBottom: '1rem' }}>RutaExpress</strong>
+        <div className="brand">
+          <span className="brand-mark">🚚</span>
+          RutaExpress
+        </div>
         {links
           .filter((l) => !l.roles || hasAnyRole(roles, l.roles))
           .map((l) => (

@@ -1,18 +1,37 @@
-:root { font-family: system-ui, 'Segoe UI', Roboto, sans-serif; color: #1f2430; background: #f5f6f8; }
+:root {
+  --navy: #0b1f3a; --navy-2: #14305a; --teal: #0fa3b1; --teal-dark: #0b7a85;
+  --bg: #f1f5f9; --ink: #1b2a41; --muted: #5b6b7f; --line: #e2e8f0;
+  font-family: Inter, system-ui, 'Segoe UI', Roboto, sans-serif; color: var(--ink); background: var(--bg);
+}
 * { box-sizing: border-box; }
 body { margin: 0; }
-a { color: #0b5fff; text-decoration: none; }
+a { color: var(--teal-dark); text-decoration: none; }
+h1, h2, h3 { color: var(--navy); margin-top: 0; }
+h2 { font-size: 1.5rem; margin-bottom: 1rem; }
 .layout { display: flex; min-height: 100vh; }
-.sidebar { width: 220px; background: #14213d; color: #fff; padding: 1rem; display: flex; flex-direction: column; gap: .25rem; }
-.sidebar a { color: #dbe4ff; padding: .5rem .75rem; border-radius: 6px; }
-.sidebar a.active { background: #22386b; color: #fff; }
-.sidebar .user { margin-top: auto; font-size: .8rem; opacity: .8; }
-.content { flex: 1; padding: 1.5rem 2rem; }
-.card { background: #fff; border-radius: 8px; padding: 1rem 1.25rem; box-shadow: 0 1px 3px rgba(0,0,0,.08); margin-bottom: 1rem; }
+.sidebar { width: 236px; background: linear-gradient(180deg, var(--navy) 0%, var(--navy-2) 100%); color: #fff; padding: 1.25rem 1rem; display: flex; flex-direction: column; gap: .25rem; }
+.brand { display: flex; align-items: center; gap: .6rem; font-size: 1.15rem; font-weight: 700; margin-bottom: 1.5rem; letter-spacing: .2px; }
+.brand-mark { width: 32px; height: 32px; border-radius: 9px; background: var(--teal); display: grid; place-items: center; font-size: 1rem; }
+.sidebar a { color: #c9d8ee; padding: .6rem .8rem; border-radius: 8px; font-size: .95rem; transition: background .15s, color .15s; }
+.sidebar a:hover { background: rgba(255,255,255,.08); color: #fff; }
+.sidebar a.active { background: var(--teal); color: #fff; font-weight: 600; }
+.sidebar .user { margin-top: auto; font-size: .8rem; color: #c9d8ee; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,.15); }
+.content { flex: 1; padding: 1.75rem 2.25rem; max-width: 1200px; }
+.card { background: #fff; border-radius: 12px; padding: 1.1rem 1.35rem; border: 1px solid var(--line); box-shadow: 0 1px 2px rgba(15,35,70,.05), 0 4px 14px rgba(15,35,70,.04); margin-bottom: 1.1rem; }
 table { width: 100%; border-collapse: collapse; }
-th, td { text-align: left; padding: .5rem; border-bottom: 1px solid #e5e7eb; font-size: .9rem; }
-button { background: #0b5fff; color: #fff; border: 0; border-radius: 6px; padding: .45rem .9rem; cursor: pointer; }
-button.secondary { background: #e5e7eb; color: #1f2430; }
-input, select { padding: .4rem .5rem; border: 1px solid #cbd0d8; border-radius: 6px; margin-right: .5rem; }
-.error { color: #b00020; }
-.center { display: grid; place-items: center; min-height: 100vh; }
+th { text-align: left; padding: .6rem .6rem; font-size: .75rem; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); border-bottom: 2px solid var(--line); }
+td { text-align: left; padding: .65rem .6rem; border-bottom: 1px solid var(--line); font-size: .9rem; }
+tbody tr:hover { background: #f8fafc; }
+button { background: var(--teal); color: #fff; border: 0; border-radius: 8px; padding: .5rem 1rem; cursor: pointer; font-weight: 600; transition: background .15s, transform .05s; }
+button:hover { background: var(--teal-dark); }
+button:active { transform: translateY(1px); }
+button.secondary { background: #e2e8f0; color: var(--ink); }
+button.secondary:hover { background: #cbd5e1; }
+input, select { padding: .5rem .65rem; border: 1px solid #cbd5e1; border-radius: 8px; margin-right: .5rem; font: inherit; background: #fff; }
+input:focus, select:focus { outline: 2px solid var(--teal); outline-offset: 1px; border-color: var(--teal); }
+.error { color: #b83a32; background: #fbe9e7; padding: .5rem .75rem; border-radius: 8px; }
+.center { display: grid; place-items: center; min-height: 100vh; background: linear-gradient(135deg, var(--navy) 0%, var(--navy-2) 60%, var(--teal-dark) 100%); }
+.login-card { width: min(92vw, 380px); padding: 2.25rem 2rem; text-align: center; border-radius: 16px; box-shadow: 0 20px 50px rgba(0,0,0,.3); }
+.login-card .brand-mark { margin: 0 auto 1rem; width: 52px; height: 52px; font-size: 1.5rem; border-radius: 14px; }
+.login-card p { color: var(--muted); margin: .25rem 0 1.5rem; }
+.login-card button { width: 100%; padding: .7rem; }
